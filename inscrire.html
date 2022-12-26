@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 éme site web</title>
+</head>
+<body>
+    <h1>Remplir le formulaire suivant:</h1>
+   <div> 
+    <form action="" method="">
+        <fieldset>
+        <Legend>Vos coordonnées</Legend>
+        <p>
+            <!-- Champ de type "text" -->
+            <label for="nom">Nom : </label>
+            <input type="text" name="nom" id="nom">
+        </p>
+        <p>
+            <!-- Champ de type "email" -->
+           <label for="prénom">Prénom : </label>
+           <input type="text" name="prénom" id="prénom">
+       </p>
+        <p>
+            <!-- Champ de type "password" -->
+            <label for="mdp">Mot de passe : </label>
+            <input type="password" name="mdp" id="mdp">
+        </p>
+        <p>
+            <!-- Champ de type "radio" -->
+            Aimez-vous Meriem ?
+            <input type="radio" name="choix-chocolat" value="1" id="choix1">
+            <label for="choix1">Non</label>
+            <input type="radio" name="choix-chocolat" value="2" id="choix2">
+            <label for="choix2">Oui</label>
+        </p>
+        <p>
+            <!-- Choix dans une liste d'options avec la balise <select> -->
+            <label for="Votre pay">Quel votre pay? </label>
+            <select name="paye" id="paye">
+                <option value="algeria">Algeria</option>
+                <option value="tunisien">Tunisien</option>
+                <option value="marroco">Marroc</option>
+                <option value="autre">Autre</option>
+            </select>
+        </p>
+       
+        <p>
+            <!-- Bouton d'envoi du formulaire -->
+            <input type="submit" value="inscrire">
+            <!-- <button type="submit">Envoyer le formulaire</button> -->
+        </p>
+        </fieldset>
+    </form>
+    </div>
+</body>
+</html>
+
