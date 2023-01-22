@@ -1,8 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for
 import datetime
+import sqlite3 
+
+
 
 
 app = Flask(__name__)
+
+
 
 @app.route("/")
 def bonjour():
@@ -30,33 +35,58 @@ def étudiant():
     
 @app.route("/inscrire")
 def inscrire():
-    return render_template("inscrire.html")
+        return render_template("inscrire.html")
+
+@app.route("/traitement1", methods=["POST", "GET"])    
+def traitement1():
+    if request.method == "POST":
+       d = request.form
+       no1 = d.get('nom1')
+       pr1 = d.get('prénom1')
+       md1 = d.get('mdp1')
+       de =[(no1, pr1, md1)]
+       conn = sqlite3.connect('inscription.db')
+       cur = conn.cursor()
+       for i in de:
+        req="insert into client (nom, prénom, mot_de_passe) values (?, ?, ?) "
+        cur.execute(req, i)
+        conn.commit()
+        conn.close()
+    return "inscription valider"
+
+
 
 
 @app.route("/login")
 def login():
     return render_template("login.html")
 
+
+
 @app.route("/traitement", methods=["POST", "GET"])
 def traitement():
-    if request.method == "POST":
+    if  request.method == "POST":
         donnees = request.form
-        nom = donnees.get('nom')
-        mdp = donnees.get('mdp')
-        if nom == 'meriem' and mdp == '2020':
-            return render_template("traitement.html", nom_utilisateur=nom)
-        else:
-            return render_template("traitement.html")
-    else:
-        return redirect(url_for('index'))
+        no = donnees.get('nom')
+        md = donnees.get('mdp')
+        te  = [(no)]
+        te1 = [(md)]
+        conn = sqlite3.connect('inscription.db')
+        cur = conn.cursor()
+        
+        
+        req  = "select nom from client where nom = '{no}' and mot_de_passe ='{md}'  "                       
+        cur.execute(req)       
+        res = cur.fetchall()
 
-
-
+        if res is True : 
+           return "le nom d'utilisateur ou le mot de passe invalider "
+        else : 
+           return "Bienvenue '{no}' "
+       
+       
 
 
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-
